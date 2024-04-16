@@ -103,6 +103,7 @@ function onPermissionDenied(cause,callinfo){
 }
 
 function onConnectionChange(obj){
+	console.log("Callback: onConnectionChange");
 	console.log('onConnectionChange: ', obj);
 	if(obj.state === "connected" ){
 		console.log( obj.state , "info", 'info');
@@ -168,6 +169,7 @@ function mediaMetrics(obj){
 
 
 function remoteAudioStatus(hasAudio) {
+	console.log("Callback: remoteAudioStatus");
 	console.log("Received remoteAudioStatus is ", hasAudio)
 	customAlert( `remoteAudioStatus: ${hasAudio}`, "info", 'info');
 }
@@ -178,6 +180,7 @@ function onReady(){
 }
 
 function onLogin(){
+	console.log("Callback: onLogin");
 	$('#loginContainer').hide();
 	$('#callContainer').show();
 	document.body.style.backgroundImage = 'none';
@@ -198,6 +201,7 @@ function onLogin(){
 }
 
 function onLoginFailed(reason){
+	console.log("Callback: onLoginFailed");
 	console.info('onLoginFailed ',reason);
 	if(Object.prototype.toString.call(reason) == "[object Object]"){
 		reason = JSON.stringify(reason);
@@ -208,6 +212,8 @@ function onLoginFailed(reason){
 
 function onNoiseReductionReady()
 {
+	console.log("Callback: onNoiseReductionReady");
+
 	console.log("Noise Reduction is ready to be started")
 	// You can start the Noise Reduction process after this event.
 	// plivoBrowserSdk.client.startNoiseReduction();
@@ -223,6 +229,7 @@ function performLogout(){
 	localStorage.clear();
 }
 function onLogout(){
+	console.log("Callback: onLogout");
 	console.info('onLogout');
 	performLogout();
 }
@@ -240,6 +247,7 @@ function onCallRemoteRinging(callInfo){
 }
 
 function onMediaConnected(callInfo){
+	console.log("Callback: onCallFailed");
 	if (callInfo) console.log(JSON.stringify(callInfo));
 	if (callInfo && callInfo.direction === 'incoming') {
 		$('#callstatus').html('Answered');
@@ -248,6 +256,7 @@ function onMediaConnected(callInfo){
 }
 
 function onCallAnswered(callInfo){
+	console.log("Callback: onCallAnswered");
 	console.info('onCallAnswered');
 	if (callInfo) console.info(JSON.stringify(callInfo));
 		$('#callstatus').html('Answered');
@@ -276,6 +285,7 @@ function onCallAnswered(callInfo){
 }
 
 function onCallTerminated(evt, callInfo){
+	console.log("Callback: onCallTerminated");
 	$('#callstatus').html('Call Ended');
 	console.info('onCallTerminated', evt);
 	clearStars();
@@ -289,6 +299,7 @@ function onCallTerminated(evt, callInfo){
 }
 
 function onCallFailed(reason, callInfo){
+	console.log("Callback: onCallFailed");
 	if (callInfo) {
 		console.log(JSON.stringify(callInfo));
 		console.info(`onCallFailed ${reason} ${callInfo.callUUID} ${callInfo.direction}`);
@@ -318,6 +329,7 @@ function onCallFailed(reason, callInfo){
 }
 
 function onMediaPermission(evt){
+	console.log("Callback: onMediaPermission");
 	console.info('onMediaPermission',evt);
 	if(evt.error){
 		customAlert('Media permission error',evt.error, 'warn');
@@ -327,6 +339,7 @@ function onMediaPermission(evt){
 }
 
 function onIncomingCall(callerName, extraHeaders, callInfo, caller_Name){
+	console.log("Callback: onIncomingCall");
 	console.info('onIncomingCall : ', callerName, extraHeaders, callInfo,caller_Name);
 	let prevIncoming = isIncomingCallPresent;
 	isIncomingCallPresent = true;
@@ -382,6 +395,7 @@ function onIncomingCall(callerName, extraHeaders, callInfo, caller_Name){
 }
 
 function onIncomingCallCanceled(callInfo){
+	console.log("Callback: onIncomingCallCanceled");
 	if (callInfo) console.info(JSON.stringify(callInfo));
 	let incomingCallNotification; 
   	if (callInfo) {
@@ -399,6 +413,7 @@ function onIncomingCallCanceled(callInfo){
 }
 
 function onIncomingCallIgnored(callInfo){
+	console.log("Callback: onIncomingCallIgnored");
 	console.info("onIncomingCallIgnored",callInfo);
 	if (callInfo) console.info(JSON.stringify(callInfo));
 	let incomingCallNotification; 
