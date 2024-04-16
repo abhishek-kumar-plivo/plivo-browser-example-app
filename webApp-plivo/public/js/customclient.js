@@ -247,7 +247,7 @@ function onCallRemoteRinging(callInfo){
 }
 
 function onMediaConnected(callInfo){
-	console.log("Callback: onCallFailed");
+	console.log("Callback: onMediaConnected");
 	if (callInfo) console.log(JSON.stringify(callInfo));
 	if (callInfo && callInfo.direction === 'incoming') {
 		$('#callstatus').html('Answered');
